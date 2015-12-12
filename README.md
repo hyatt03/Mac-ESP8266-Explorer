@@ -36,3 +36,10 @@ A GUI for managing an ESP8266, with NodeMCU.
 - The program automatically selects the last used device on load.
 - A user can install a library to the device easily.
 - A user can see usage of the device.
+- Create a tutorial of this program.
+
+## References
+This app is based on working with the ESP8266, along with [NodeMCU](https://github.com/nodemcu/nodemcu-firmware).
+
+## Contributing
+If you want to contribute to this repository, feel free to create a pull request, though be aware that open source is not a democracy, and therefore I reserve the right to reject anything which goes against my vision of this program. That said please do contribute!
