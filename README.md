@@ -37,6 +37,10 @@ A GUI for managing an ESP8266, with NodeMCU.
 - A user can install a library to the device easily.
 - A user can see usage of the device.
 - Create a tutorial of this program.
+- Create Unit tests.
+- Create UI integration tests.
+- Create a release pipeline to build and release software herein.
+- Create an integration pipeline which runs tests on pull requests and notifies the github repo.
 
 ## References
 This app is based on working with the ESP8266, along with [NodeMCU](https://github.com/nodemcu/nodemcu-firmware).
