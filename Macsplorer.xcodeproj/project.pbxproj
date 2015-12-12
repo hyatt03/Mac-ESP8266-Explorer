@@ -13,6 +13,10 @@
 		A47EECC41C184A9C0043F897 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A47EECC21C184A9C0043F897 /* MainMenu.xib */; };
 		A47EECCF1C184A9C0043F897 /* MacsplorerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A47EECCE1C184A9C0043F897 /* MacsplorerTests.m */; };
 		A47EECDA1C184A9C0043F897 /* MacsplorerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A47EECD91C184A9C0043F897 /* MacsplorerUITests.m */; };
+		A47EECE81C1874060043F897 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = A47EECE71C1874060043F897 /* Cartfile */; settings = {ASSET_TAGS = (); }; };
+		A47EECEA1C1874880043F897 /* ORSSerial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A47EECE91C1874880043F897 /* ORSSerial.framework */; };
+		A47EECEB1C1874880043F897 /* ORSSerial.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A47EECE91C1874880043F897 /* ORSSerial.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4F8EEAA1C19C13900A028A2 /* TextEditorTab.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F8EEA91C19C13900A028A2 /* TextEditorTab.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +36,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A47EECEC1C1874880043F897 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A47EECEB1C1874880043F897 /* ORSSerial.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		A47EECB71C184A9C0043F897 /* Macsplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Macsplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A47EECBA1C184A9C0043F897 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -46,6 +64,9 @@
 		A47EECD51C184A9C0043F897 /* MacsplorerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacsplorerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A47EECD91C184A9C0043F897 /* MacsplorerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MacsplorerUITests.m; sourceTree = "<group>"; };
 		A47EECDB1C184A9C0043F897 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A47EECE71C1874060043F897 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		A47EECE91C1874880043F897 /* ORSSerial.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ORSSerial.framework; path = Macsplorer/Carthage/Build/Mac/ORSSerial.framework; sourceTree = "<group>"; };
+		A4F8EEA91C19C13900A028A2 /* TextEditorTab.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEditorTab.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A47EECEA1C1874880043F897 /* ORSSerial.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +98,7 @@
 		A47EECAE1C184A9C0043F897 = {
 			isa = PBXGroup;
 			children = (
+				A47EECE91C1874880043F897 /* ORSSerial.framework */,
 				A47EECB91C184A9C0043F897 /* Macsplorer */,
 				A47EECCD1C184A9C0043F897 /* MacsplorerTests */,
 				A47EECD81C184A9C0043F897 /* MacsplorerUITests */,
@@ -102,6 +125,8 @@
 				A47EECC21C184A9C0043F897 /* MainMenu.xib */,
 				A47EECC51C184A9C0043F897 /* Info.plist */,
 				A47EECBD1C184A9C0043F897 /* Supporting Files */,
+				A47EECE71C1874060043F897 /* Cartfile */,
+				A4F8EEA91C19C13900A028A2 /* TextEditorTab.xib */,
 			);
 			path = Macsplorer;
 			sourceTree = "<group>";
@@ -142,6 +167,7 @@
 				A47EECB31C184A9C0043F897 /* Sources */,
 				A47EECB41C184A9C0043F897 /* Frameworks */,
 				A47EECB51C184A9C0043F897 /* Resources */,
+				A47EECEC1C1874880043F897 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -235,6 +261,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A47EECE81C1874060043F897 /* Cartfile in Resources */,
+				A4F8EEAA1C19C13900A028A2 /* TextEditorTab.xib in Resources */,
 				A47EECC11C184A9C0043F897 /* Assets.xcassets in Resources */,
 				A47EECC41C184A9C0043F897 /* MainMenu.xib in Resources */,
 			);
@@ -393,9 +421,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Macsplorer/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Macsplorer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = space.hyatt.Macsplorer;
+				PRODUCT_BUNDLE_IDENTIFIER = space.hyatt.macsplorer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -405,9 +437,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Macsplorer/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Macsplorer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = space.hyatt.Macsplorer;
+				PRODUCT_BUNDLE_IDENTIFIER = space.hyatt.macsplorer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -483,6 +519,7 @@
 				A47EECE01C184A9C0043F897 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A47EECE11C184A9C0043F897 /* Build configuration list for PBXNativeTarget "MacsplorerTests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +528,7 @@
 				A47EECE31C184A9C0043F897 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A47EECE41C184A9C0043F897 /* Build configuration list for PBXNativeTarget "MacsplorerUITests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +537,7 @@
 				A47EECE61C184A9C0043F897 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

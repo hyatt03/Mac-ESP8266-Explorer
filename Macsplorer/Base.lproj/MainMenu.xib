@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6233" systemVersion="14A329f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6233"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -11,19 +13,26 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="">
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
+                <outlet property="baudRateSelector" destination="fwI-e2-MGr" id="R9a-fs-fVR"/>
+                <outlet property="deviceInteractionButtonsOutlet" destination="f96-ss-tMK" id="bmW-nH-dA5"/>
+                <outlet property="fileManipultaionButtonsOutlet" destination="ZnG-mK-JQf" id="eqM-YK-cgC"/>
+                <outlet property="sendToSerialTextboxOutlet" destination="KEw-Vs-nb1" id="M8G-WH-VaR"/>
+                <outlet property="serialDeviceSelector" destination="OXo-AB-fVP" id="ViY-jj-q9S"/>
+                <outlet property="tabbedTextEditor" destination="klg-dW-eRx" id="Qvc-YV-PDb"/>
+                <outlet property="terminalTextView" destination="ztC-aa-T20" id="ikI-SE-NEt"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
-                <menuItem title="Macsplorer" id="1Xt-HY-uBw">
+                <menuItem title="Mac ESP8266 Explorer" id="1Xt-HY-uBw">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Macsplorer" systemMenu="apple" id="uQy-DD-JDr">
+                    <menu key="submenu" title="Mac ESP8266 Explorer" systemMenu="apple" id="uQy-DD-JDr">
                         <items>
-                            <menuItem title="About Macsplorer" id="5kV-Vb-QxS">
+                            <menuItem title="About Mac ESP8266 Explorer" id="5kV-Vb-QxS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="orderFrontStandardAboutPanel:" target="-1" id="Exp-CZ-Vem"/>
@@ -55,7 +64,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                            <menuItem title="Quit Macsplorer" keyEquivalent="q" id="4sb-4s-VLi">
+                            <menuItem title="Quit Mac ESP8266 Explorer" keyEquivalent="q" id="4sb-4s-VLi">
                                 <connections>
                                     <action selector="terminate:" target="-1" id="Te7-pn-YzF"/>
                                 </connections>
@@ -656,7 +665,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                         <items>
-                            <menuItem title="Macsplorer Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                            <menuItem title="Mac ESP8266 Explorer Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                 <connections>
                                     <action selector="showHelp:" target="-1" id="y7X-2Q-9no"/>
                                 </connections>
@@ -666,15 +675,246 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Macsplorer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
+        <window title="Mac ESP8266 Explorer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <rect key="contentRect" x="335" y="390" width="1200" height="800"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <value key="minSize" type="size" width="1200" height="500"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <rect key="frame" x="0.0" y="0.0" width="1200" height="800"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="wkV-62-gBe">
+                        <rect key="frame" x="12" y="205" width="1176" height="5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="9xv-wD-TZl"/>
+                        </constraints>
+                        <animations/>
+                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <font key="titleFont" metaFont="system"/>
+                    </box>
+                    <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KEw-Vs-nb1">
+                        <rect key="frame" x="20" y="17" width="1042" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="6Vn-5f-RqD"/>
+                        </constraints>
+                        <animations/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="G1P-G6-skZ">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="sendToSerialTextboxAction:" target="Voe-Tx-rLC" id="w3o-aa-odd"/>
+                        </connections>
+                    </textField>
+                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xeY-uO-uOf">
+                        <rect key="frame" x="1064" y="11" width="122" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="xPm-Hx-Ymr"/>
+                        </constraints>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="Send to Serial" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="we3-Bq-0ZF">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="sendToSerialButton:" target="Voe-Tx-rLC" id="tDp-RY-oLJ"/>
+                        </connections>
+                    </button>
+                    <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZnG-mK-JQf">
+                        <rect key="frame" x="18" y="757" width="261" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="COR-KO-GhH"/>
+                        </constraints>
+                        <animations/>
+                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="Bkh-On-KZq">
+                            <font key="font" metaFont="system"/>
+                            <segments>
+                                <segment label="New"/>
+                                <segment label="Open" tag="1"/>
+                                <segment label="Save" tag="2"/>
+                                <segment label="Close" tag="3"/>
+                                <segment label="Line" tag="4"/>
+                            </segments>
+                        </segmentedCell>
+                        <connections>
+                            <action selector="fileManipulationButtonsAction:" target="Voe-Tx-rLC" id="SSf-1M-ejv"/>
+                        </connections>
+                    </segmentedControl>
+                    <tabView translatesAutoresizingMaskIntoConstraints="NO" id="klg-dW-eRx">
+                        <rect key="frame" x="13" y="206" width="1174" height="551"/>
+                        <animations/>
+                        <font key="font" metaFont="system"/>
+                        <tabViewItems/>
+                    </tabView>
+                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fwI-e2-MGr">
+                        <rect key="frame" x="472" y="756" width="127" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="PX7-rU-1wH"/>
+                            <constraint firstAttribute="width" constant="122" id="f1t-yO-V45"/>
+                        </constraints>
+                        <animations/>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="ReU-uh-E15">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="oNe-HA-ScE">
+                                <items>
+                                    <menuItem title="-- Baud rate --" id="sLz-LH-cKF"/>
+                                    <menuItem title="1200" id="uAw-uP-3mr"/>
+                                    <menuItem title="2400" id="7UV-dC-kyf"/>
+                                    <menuItem title="4800" id="OZD-di-rcc"/>
+                                    <menuItem title="9600" id="KvH-kR-0Ia"/>
+                                    <menuItem title="19200" id="4gz-5D-53a"/>
+                                    <menuItem title="38400" id="nXN-pM-m23"/>
+                                    <menuItem title="57600" id="Eae-CI-ZPE"/>
+                                    <menuItem title="74880" id="HS8-Yh-KYj"/>
+                                    <menuItem title="115200" id="I6H-Fy-xzW"/>
+                                    <menuItem title="230400" id="XTw-Nt-YJd"/>
+                                    <menuItem title="460800" id="J21-x9-s1O"/>
+                                    <menuItem title="921600" id="mZM-iq-Rwr"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="baudRateSelectorAction:" target="Voe-Tx-rLC" id="Wgj-nm-o3H"/>
+                        </connections>
+                    </popUpButton>
+                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OXo-AB-fVP">
+                        <rect key="frame" x="283" y="756" width="186" height="26"/>
+                        <animations/>
+                        <popUpButtonCell key="cell" type="push" title="-- Select serial device --" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="sdR-9d-mlk" id="Tus-am-0oL">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="JJc-iR-Oco">
+                                <items>
+                                    <menuItem title="-- Select serial device --" state="on" id="sdR-9d-mlk"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="serialDeviceSelectorAction:" target="Voe-Tx-rLC" id="161-1z-rja"/>
+                        </connections>
+                    </popUpButton>
+                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQo-Vg-mlE">
+                        <rect key="frame" x="20" y="47" width="1160" height="152"/>
+                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Mk2-Sq-cXq">
+                            <rect key="frame" x="1" y="1" width="1158" height="150"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="panel" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="ztC-aa-T20">
+                                    <rect key="frame" x="0.0" y="0.0" width="1158" height="150"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <animations/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="minSize" width="1158" height="150"/>
+                                    <size key="maxSize" width="1160" height="10000000"/>
+                                    <attributedString key="textStorage">
+                                        <fragment content="&gt; Welcome to Mac ESP8266 Explorer, the serial explorer for mac!">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="minSize" width="1158" height="150"/>
+                                    <size key="maxSize" width="1160" height="10000000"/>
+                                </textView>
+                            </subviews>
+                            <animations/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </clipView>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="GQo-Vg-mlE" secondAttribute="height" multiplier="145:19" id="kI5-Ye-mLA"/>
+                        </constraints>
+                        <animations/>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="Jxo-Fp-H8x">
+                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
+                        </scroller>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="5lW-GP-eAe">
+                            <rect key="frame" x="1143" y="1" width="16" height="150"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
+                        </scroller>
+                    </scrollView>
+                    <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f96-ss-tMK">
+                        <rect key="frame" x="602" y="757" width="531" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="OeM-tf-iOE"/>
+                        </constraints>
+                        <animations/>
+                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="FXf-e4-o6S">
+                            <font key="font" metaFont="system"/>
+                            <segments>
+                                <segment label="Open connection"/>
+                                <segment label="Flash firmware to device" tag="1"/>
+                                <segment label="Refresh Devices" tag="2"/>
+                                <segment label="Send to device" tag="3"/>
+                            </segments>
+                        </segmentedCell>
+                        <connections>
+                            <action selector="deviceInteractionButtonsAction:" target="Voe-Tx-rLC" id="QX8-BB-P2g"/>
+                        </connections>
+                    </segmentedControl>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="xeY-uO-uOf" secondAttribute="trailing" constant="20" id="0OO-Hi-z5r"/>
+                    <constraint firstItem="ZnG-mK-JQf" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="3wW-KL-tMD"/>
+                    <constraint firstItem="fwI-e2-MGr" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="554-eQ-XoG"/>
+                    <constraint firstItem="f96-ss-tMK" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="7M3-A7-9vK"/>
+                    <constraint firstItem="KEw-Vs-nb1" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="9u0-QW-zTC"/>
+                    <constraint firstItem="fwI-e2-MGr" firstAttribute="leading" secondItem="OXo-AB-fVP" secondAttribute="trailing" constant="8" id="FHx-1S-kqZ"/>
+                    <constraint firstItem="klg-dW-eRx" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="HMs-VS-ZNu"/>
+                    <constraint firstAttribute="trailing" secondItem="klg-dW-eRx" secondAttribute="trailing" constant="20" id="LQc-0C-w8h"/>
+                    <constraint firstAttribute="trailing" secondItem="wkV-62-gBe" secondAttribute="trailing" constant="12" id="Lmf-cv-QDY"/>
+                    <constraint firstItem="wkV-62-gBe" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="12" id="NI8-Bi-1Ae"/>
+                    <constraint firstItem="xeY-uO-uOf" firstAttribute="leading" secondItem="KEw-Vs-nb1" secondAttribute="trailing" constant="8" id="OQO-Ha-zbZ"/>
+                    <constraint firstItem="wkV-62-gBe" firstAttribute="top" secondItem="klg-dW-eRx" secondAttribute="bottom" constant="8" id="Oz8-yf-eb8"/>
+                    <constraint firstAttribute="trailing" secondItem="GQo-Vg-mlE" secondAttribute="trailing" constant="20" id="Qwh-VR-Sem"/>
+                    <constraint firstItem="OXo-AB-fVP" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="RYG-km-AbU"/>
+                    <constraint firstItem="f96-ss-tMK" firstAttribute="leading" secondItem="fwI-e2-MGr" secondAttribute="trailing" constant="8" id="SSI-W9-Jyd"/>
+                    <constraint firstItem="ZnG-mK-JQf" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="ZlW-MG-DTw"/>
+                    <constraint firstAttribute="bottom" secondItem="KEw-Vs-nb1" secondAttribute="bottom" constant="17" id="bG3-4o-31f"/>
+                    <constraint firstItem="fwI-e2-MGr" firstAttribute="leading" secondItem="OXo-AB-fVP" secondAttribute="trailing" constant="8" id="cqo-Kx-Xs6"/>
+                    <constraint firstItem="GQo-Vg-mlE" firstAttribute="top" secondItem="wkV-62-gBe" secondAttribute="bottom" constant="8" id="dId-2r-8dJ"/>
+                    <constraint firstItem="xeY-uO-uOf" firstAttribute="top" secondItem="GQo-Vg-mlE" secondAttribute="bottom" constant="8" id="eNc-sI-rhy"/>
+                    <constraint firstItem="klg-dW-eRx" firstAttribute="top" secondItem="f96-ss-tMK" secondAttribute="bottom" constant="8" id="meN-NC-c6g"/>
+                    <constraint firstItem="xeY-uO-uOf" firstAttribute="leading" secondItem="KEw-Vs-nb1" secondAttribute="trailing" constant="8" id="oxr-HH-twH"/>
+                    <constraint firstItem="OXo-AB-fVP" firstAttribute="leading" secondItem="ZnG-mK-JQf" secondAttribute="trailing" constant="8" id="t45-fI-Ezm"/>
+                    <constraint firstAttribute="bottom" secondItem="xeY-uO-uOf" secondAttribute="bottom" constant="18" id="wH3-hf-AjK"/>
+                    <constraint firstItem="GQo-Vg-mlE" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="ydR-3N-fXG"/>
+                </constraints>
+                <animations/>
             </view>
+            <point key="canvasLocation" x="877" y="865"/>
         </window>
+        <tabView id="lFR-xW-1aj">
+            <rect key="frame" x="0.0" y="0.0" width="177" height="124"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <animations/>
+            <font key="font" metaFont="system"/>
+            <tabViewItems>
+                <tabViewItem label="Tab" identifier="1" id="wsT-MT-acG">
+                    <view key="view" id="3eJ-M7-tC7">
+                        <rect key="frame" x="10" y="33" width="157" height="78"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                    </view>
+                </tabViewItem>
+                <tabViewItem label="View" identifier="2" id="hph-am-7Hi">
+                    <view key="view" id="50a-8Q-2lV">
+                        <rect key="frame" x="10" y="33" width="157" height="78"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </view>
+                </tabViewItem>
+            </tabViewItems>
+            <point key="canvasLocation" x="1607.5" y="759"/>
+        </tabView>
     </objects>
 </document>
