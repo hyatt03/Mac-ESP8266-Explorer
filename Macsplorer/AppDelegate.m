@@ -33,9 +33,11 @@ NSArray *ports;
 ORSSerialPort* selectedPort;
 int baudRate;
 NSMutableArray* tabViewItemTextViews;
+int idSequence;
 
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    idSequence = 0;
     baudRate = 9600;
     [self findAvaliablePortsAndSetPopupButtons];
     selectedPort = [ports objectAtIndex:1];
@@ -157,31 +159,73 @@ NSMutableArray* tabViewItemTextViews;
 }
 
 - (void) createNewTab {
-    NSRect cFrame = tabbedTextEditor.bounds;
-    NSTabViewItem* myTab = [[NSTabViewItem alloc] initWithIdentifier:@1];
-    [tabbedTextEditor addTabViewItem:myTab];
+    // Initiate new tab
+    idSequence = idSequence + 1;
+    NSTabViewItem* myTab = [[NSTabViewItem alloc] initWithIdentifier:[NSNumber numberWithInt:idSequence]];
     myTab.label = @"Scratchpad";
-    NSTextView *theTextView = [[NSTextView alloc] initWithFrame:cFrame];
-    [theTextView setAllowsImageEditing:NO];
+    
+    // Add the tab to the editor and select it.
+    [tabbedTextEditor addTabViewItem:myTab];
+    [tabbedTextEditor selectLastTabViewItem:nil];
+    
+    // Initiate a scrollview
+    NSScrollView* theScroll = [[NSScrollView alloc] initWithFrame:myTab.view.bounds];
+    
+    // Set scroll view options
+    NSSize contentSize = [theScroll contentSize];
+    [theScroll setBorderType:NSNoBorder];
+    [theScroll setHasVerticalScroller:YES];
+    [theScroll setHasHorizontalScroller:NO];
+    [theScroll setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+    
+    // Initiate a textview
+    NSTextView *theTextView = [[NSTextView alloc] initWithFrame:NSMakeRect(0, 0, contentSize.width, contentSize.height)];
+    
+    // Set text view sizing options
+    [theTextView setMinSize:NSMakeSize(0.0, contentSize.height)];
+    [theTextView setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
+    [theTextView setVerticallyResizable:YES];
+    [theTextView setHorizontallyResizable:NO];
+    [theTextView setAutoresizingMask:NSViewWidthSizable];
+    [[theTextView textContainer] setContainerSize:NSMakeSize(contentSize.width, FLT_MAX)];
+    [[theTextView textContainer] setWidthTracksTextView:YES];
+    
+    // Set the text views properties to sane code editing
+    [theTextView setSelectable:YES];
     [theTextView setAllowsUndo:YES];
     [theTextView setEditable:YES];
+    
     [theTextView setRichText:NO];
-    [theTextView setSelectable:YES];
     [theTextView setSmartInsertDeleteEnabled:NO];
     [theTextView setContinuousSpellCheckingEnabled:NO];
     [theTextView setAutomaticQuoteSubstitutionEnabled:NO];
     [theTextView setAutomaticLinkDetectionEnabled:NO];
     [theTextView setAutomaticDataDetectionEnabled:NO];
     [theTextView setAutomaticDashSubstitutionEnabled:NO];
-    [theTextView setAllowsUndo:YES];
     [theTextView setAllowsImageEditing:NO];
+    
     [theTextView setFont:[NSFont fontWithName:@"Menlo Regular" size:12.0]];
-    NSScrollView* theScroll = [[NSScrollView alloc] initWithFrame:myTab.view.bounds];
+    
+    theTextView.continuousSpellCheckingEnabled = NO;
+    theTextView.grammarCheckingEnabled = NO;
+    theTextView.automaticSpellingCorrectionEnabled = NO;
+    theTextView.automaticTextReplacementEnabled = NO;
+    
+    // add the text view to the scrollview
     [theScroll addSubview:theTextView];
     [theScroll setAutoresizesSubviews:YES];
+    
+    // add the scrollview to the tab
     [myTab.view addSubview:theScroll];
     [myTab.view setAutoresizesSubviews:YES];
     
+    // Set the scroll views document to the text view (enables scrolling)
+    [theScroll setDocumentView:theTextView];
+    
+    // Become first responder
+    [theTextView becomeFirstResponder];
+    
+    // add the texteditor from the tab to a tracking array.
     [tabViewItemTextViews addObject:theTextView];
 }
 
@@ -204,7 +248,6 @@ NSMutableArray* tabViewItemTextViews;
 - (void)sendValueToSerial:(NSString*) value {
     NSData *dataToSend = [[NSString stringWithFormat:@"%@ \n", value] dataUsingEncoding:NSUTF8StringEncoding];
     [selectedPort sendData:dataToSend];
-    // [self sendValueToSerialDisplay:value];
 }
 
 - (void)sendValueToSerialDisplay:(NSString*) value {
