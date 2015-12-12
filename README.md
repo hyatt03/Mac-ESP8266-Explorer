@@ -21,9 +21,18 @@ A GUI for managing an ESP8266, with NodeMCU.
  
 ## TODO list
 - The program sends commands to the device without a static wait, it simply sends all the commands as soon as possible.
+- A user can close a document.
 - A user can save a document to a local file.
 - A user can load a document from a local file.
 - A user can save a document to the device.
+- The program executes the document just saved to the device.
 - A user can download a document from the device.
-- A user can send a single line from a document.
-
+- A user can send a single line from a document to the device.
+- A user is properly informed when something works, and when something doesn't (Error messaging).
+- The program automatically refreshes serial devices when a new one is mounted.
+- The program responds correctly when the connection to a device is closed by removal of device.
+- A user can flash firmware to a device from binaries or optianlly download some firmware from the NodeMCU repo.
+- A user can configure the program.
+- The program automatically selects the last used device on load.
+- A user can install a library to the device easily.
+- A user can see usage of the device.
