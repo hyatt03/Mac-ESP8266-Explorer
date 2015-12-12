@@ -13,11 +13,12 @@ A GUI for managing an ESP8266, with NodeMCU.
 - A user can send commands to a device with the terminal.
 - A user can create a document to enter commands into.
 - A user can send commands from a document.
- 
-## Works in progress.
 - A user can rescale the application without breaking the layout.
 - A user can edit multiple documents.
 - A document is scrollable.
+ 
+## Works in progress.
+- Syntax highlighting
  
 ## TODO list
 - The program sends commands to the device without a static wait, it simply sends all the commands as soon as possible.
