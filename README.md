@@ -41,6 +41,8 @@ A GUI for managing an ESP8266, with NodeMCU.
 - Create UI integration tests.
 - Create a release pipeline to build and release software herein.
 - Create an integration pipeline which runs tests on pull requests and notifies the github repo.
+- Integrate keyboard shortcuts to increase productivity.
+- Recreate relevant functionality through the top bar menu.
 
 ## References
 This app is based on working with the ESP8266, along with [NodeMCU](https://github.com/nodemcu/nodemcu-firmware).
