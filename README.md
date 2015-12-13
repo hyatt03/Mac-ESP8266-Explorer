@@ -46,6 +46,8 @@ A GUI for managing an ESP8266, with NodeMCU.
 - Recreate relevant functionality through the top bar menu.
 - Optimize performance of syntax highlighting.
 - Add lint and possibly other static analysis of source code.
+- Line numbers
+- A debugger
 
 ## References
 This app is based on working with the ESP8266, along with [NodeMCU](https://github.com/nodemcu/nodemcu-firmware).
