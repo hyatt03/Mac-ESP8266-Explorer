@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <ORSSerial/ORSSerial.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, ORSSerialPortDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, ORSSerialPortDelegate, NSTextStorageDelegate>
 
 // File manipulating buttons
 @property (weak) IBOutlet NSSegmentedControl *fileManipultaionButtonsOutlet;
@@ -40,5 +40,8 @@
 - (void)serialPort:(ORSSerialPort *)serialPort didReceiveData:(NSData *)data;
 - (void)serialPortWasOpened:(ORSSerialPort *)serialPort;
 - (void)serialPortWasClosed:(ORSSerialPort *)serialPort;
+
+// Text view delegate
+- (void)textStorageDidProcessEditing:(NSNotification *)notification;
 
 @end

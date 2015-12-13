@@ -34,15 +34,54 @@ ORSSerialPort* selectedPort;
 int baudRate;
 NSMutableArray* tabViewItemTextViews;
 int idSequence;
+NSArray* blueWords;
+NSMutableDictionary* keyWords;
+
+#define ALPHABET_LEN 256
+#define NOT_FOUND patlen
+#define max(a, b) ((a < b) ? b : a)
 
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    // initialize the id sequence for text views
     idSequence = 0;
+    
+    // Set default baudrate
     baudRate = 9600;
+    
+    // find availiable ports
     [self findAvaliablePortsAndSetPopupButtons];
+    
+    // set the first port as the default port
     selectedPort = [ports objectAtIndex:1];
+    
+    // Send input char to serial (cosmetic)
+    [[terminalTextView textStorage] setDelegate:nil];
     [self sendValueToSerialDisplay:@"\n> "];
+    
+    // Initialize the tabviewitemtextviews array to keep references to textview for retrieving text when sending to device.
     tabViewItemTextViews = [[NSMutableArray alloc] init];
+    
+    // Register for text storage notifications.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                          selector:@selector(textStorageDidProcessEditing:)
+                                          name:NSTextStorageDidProcessEditingNotification object:nil];
+    
+    // Setup words for syntax highlighting
+    /* keyWords = [[NSMutableDictionary alloc] init];
+    NSColor * blue = [NSColor blueColor];
+    NSColor * green = [NSColor colorWithCalibratedRed: 0.0 green: 0.5 blue: 0.0 alpha: 1.0];
+    NSColor * red = [NSColor redColor];
+    
+    [keyWords setObject: green forKey: @"do"];
+    [keyWords setObject: green forKey: @"end"];
+    [keyWords setObject: blue forKey: @"while"];
+    [keyWords setObject: blue forKey: @"if"];
+    [keyWords setObject: red forKey: @"quote-color"];
+     */
+
+    // blueWords = [[NSArray alloc] initWithObjects:@"while", @"if", nil];
+    
 }
 
 - (void)findAvaliablePortsAndSetPopupButtons {
@@ -110,6 +149,7 @@ int idSequence;
             NSTextView* theText = [tabViewItemTextViews objectAtIndex:[tabbedTextEditor indexOfTabViewItem:[tabbedTextEditor selectedTabViewItem]]];
             NSArray* commandsToSend = [[theText string] componentsSeparatedByString:@"\n"];
             for (NSString* command in commandsToSend) {
+                NSLog(command);
                 [self sendValueToSerial:command];
                 [NSThread sleepForTimeInterval:0.5f];
             }
@@ -222,11 +262,11 @@ int idSequence;
     // Set the scroll views document to the text view (enables scrolling)
     [theScroll setDocumentView:theTextView];
     
-    // Become first responder
-    [theTextView becomeFirstResponder];
-    
     // add the texteditor from the tab to a tracking array.
     [tabViewItemTextViews addObject:theTextView];
+    
+    // Setup syntax highlighting
+    [[theTextView textStorage] setDelegate:self];
 }
 
 - (IBAction)baudRateSelectorAction:(id)sender {
@@ -290,6 +330,58 @@ int idSequence;
     NSLog(@"Serial port was closed!");
     [self sendValueToSerialDisplay:@"Serial port was closed!"];
     [self sendValueToSerialDisplay:@"\n> "];
+}
+
+- (void)textStorageDidProcessEditing:(NSNotification *)notification
+{
+    blueWords = [[NSArray alloc] initWithObjects:@"local", @"and", @"break", @"do", @"else", @"elseif", @"end", @"false", @"for", @"function", @"if", @"in", @"nil", @"not", @"or", @"repeat", @"return", @"then", @"true", @"until", @"while", nil];
+    
+    NSTextStorage *textStorage = [notification object];
+    NSString *string = [textStorage string];
+    NSInteger stringlen = [string length];
+    
+    [textStorage removeAttribute:NSForegroundColorAttributeName
+                           range:NSMakeRange(0, stringlen)];
+    
+    for (NSInteger i = [blueWords count]; i > 0; i--) {
+        NSString* pat = [blueWords objectAtIndex:i - 1];
+        NSInteger patlen = [pat length];
+        unichar patfirstchar = [pat characterAtIndex:0];
+        
+        for (NSInteger x = [string length]; x > 0; x--) {
+            NSInteger y = x - 1;
+            if (stringlen > y + patlen && y - 1 >= 0) { // check that index + pattern is not greater than the length of the entire string.
+                unichar charbefore = [string characterAtIndex:y - 1];
+                unichar charafter = [string characterAtIndex:y + patlen];
+                if (
+                    [string characterAtIndex:y] == patfirstchar && // Check that the char is equal to the first char of the pattern.
+                    (y == 0 || charbefore == ' ' || charbefore == '\n') && // Check that the char before is either a space or a newline
+                    (charafter == ' ' || charafter == '\n')
+                    )
+                {
+                    NSRange wordRange = NSMakeRange(y, patlen);
+                    if ([[string substringWithRange:wordRange] isEqualToString:pat]) {
+                        [textStorage addAttribute:NSForegroundColorAttributeName value:[NSColor blueColor] range:wordRange];
+                    }
+                }
+            }
+            else if (y == 0 && stringlen > y + patlen) { // this is the first char.
+                unichar charafter = [string characterAtIndex:y + patlen];
+                if ([string characterAtIndex:y] == patfirstchar && (charafter == ' ' || charafter == '\n')) {
+                    NSRange wordRange = NSMakeRange(y, patlen);
+                    if ([[string substringWithRange:wordRange] isEqualToString:pat]) {
+                        [textStorage addAttribute:NSForegroundColorAttributeName value:[NSColor blueColor] range:wordRange];
+                    }
+                }
+            }
+            else if (stringlen > y + patlen && [string characterAtIndex:y] == patfirstchar) {
+                NSRange wordRange = NSMakeRange(y, patlen);
+                if ([[string substringWithRange:wordRange] isEqualToString:pat]) {
+                    [textStorage addAttribute:NSForegroundColorAttributeName value:[NSColor blueColor] range:wordRange];
+                }
+            }
+        }
+    }
 }
 
 @end
