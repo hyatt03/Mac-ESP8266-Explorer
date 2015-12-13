@@ -13,11 +13,12 @@ A GUI for managing an ESP8266, with NodeMCU.
 - A user can send commands to a device with the terminal.
 - A user can create a document to enter commands into.
 - A user can send commands from a document.
- 
-## Works in progress.
 - A user can rescale the application without breaking the layout.
 - A user can edit multiple documents.
 - A document is scrollable.
+ 
+## Works in progress.
+- Syntax highlighting
  
 ## TODO list
 - The program sends commands to the device without a static wait, it simply sends all the commands as soon as possible.
@@ -43,6 +44,10 @@ A GUI for managing an ESP8266, with NodeMCU.
 - Create an integration pipeline which runs tests on pull requests and notifies the github repo.
 - Integrate keyboard shortcuts to increase productivity.
 - Recreate relevant functionality through the top bar menu.
+- Optimize performance of syntax highlighting.
+- Add lint and possibly other static analysis of source code.
+- Line numbers
+- A debugger
 
 ## References
 This app is based on working with the ESP8266, along with [NodeMCU](https://github.com/nodemcu/nodemcu-firmware).
