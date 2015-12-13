@@ -16,13 +16,13 @@ A GUI for managing an ESP8266, with NodeMCU.
 - A user can rescale the application without breaking the layout.
 - A user can edit multiple documents.
 - A document is scrollable.
+- Syntax highlighting
  
 ## Works in progress.
-- Syntax highlighting
+- A user can close a document.
  
 ## TODO list
 - The program sends commands to the device without a static wait, it simply sends all the commands as soon as possible.
-- A user can close a document.
 - A user can save a document to a local file.
 - A user can load a document from a local file.
 - A user can save a document to the device.
